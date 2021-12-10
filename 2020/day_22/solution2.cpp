@@ -17,14 +17,24 @@ int64_t play(std::deque<int> &d1, std::deque<int> &d2) {
 
     for(auto e : d3) {sum += count*d3.back();d3.pop_back();count++;}
 
-    return sum;
+    return (d1.size() == 0) ? -sum : sum;
   } else {
     int i1 = d1.front(),i2 = d2.front();
-
-    if(i1 > i2) {d1.push_back(i1);d1.push_back(i2);}
-    if(i2 > i1) {d2.push_back(i2);d2.push_back(i1);}
     d1.pop_front();d2.pop_front();
 
+    //sub-game
+    if(i1 >= d1.size() && i2 >= d2.size()) {
+      int tmp = play(d1, d2);
+      if(i1 < i2) std::swap(i1, i2);
+      if(tmp < 0) {
+        d2.push_back(i1);d2.push_back(i2);
+      } else {
+        d1.push_back(i1);d1.push_back(i2);
+      }
+    } else {
+      if(i1 > i2) {d1.push_back(i1);d1.push_back(i2);}
+      if(i2 > i1) {d2.push_back(i2);d2.push_back(i1);}
+    }
     return play(d1, d2);
   }
 }
