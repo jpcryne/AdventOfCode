@@ -79,5 +79,4 @@ def solution_1(target) :
 
 if __name__ == "__main__" :
     x = read_file("input.txt")
-    print(x)
     solution_1(x)
