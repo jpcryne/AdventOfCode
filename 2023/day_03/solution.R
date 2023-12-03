@@ -1,5 +1,4 @@
 input <- read.delim(here::here("2023/day_03/input.txt"), sep = "", header = FALSE) |>
-  # read.table(here::here("2023/day_03/input.txt"), header=FALSE) |>
   dplyr::mutate(row = dplyr::row_number())
 
 # * Extract number locations
